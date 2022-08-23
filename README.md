@@ -6,4 +6,5 @@
   <img height="300" src="https://github.com/layoutBox/FlexLayout/raw/master/docs_markdown/images/flexlayout-logo-text.png">
 </p>
 
-##
+## 08/23
+기본적인 StackView르 만들어서 구현해봤다. 공식문서에 있는 튜토리얼을 따라해보려 했으나, 하나하나 가지고 놀아보기에는 너무 복잡한 감이 있기에 기초적인 메소드들만 가지고 놀아보기에 적합한 playground를 만들어봤다! 확실히 UIStackView로 만드는것보단 훨씨 간편해보이는듯...
