@@ -8,5 +8,6 @@ target 'FlexLayout101' do
   # Pods for FlexLayout101
 
 pod 'FlexLayout'
+pod 'PinLayout'
 
 end

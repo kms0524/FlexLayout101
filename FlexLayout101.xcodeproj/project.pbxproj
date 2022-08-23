@@ -14,6 +14,7 @@
 		98F6485028ACD47100EB42DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F6484E28ACD47100EB42DD /* Main.storyboard */; };
 		98F6485228ACD47400EB42DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 98F6485128ACD47400EB42DD /* Assets.xcassets */; };
 		98F6485528ACD47400EB42DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 98F6485328ACD47400EB42DD /* LaunchScreen.storyboard */; };
+		98F6487428B22E5A00EB42DD /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F6487328B22E5A00EB42DD /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		98F6485128ACD47400EB42DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98F6485428ACD47400EB42DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		98F6485628ACD47400EB42DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		98F6487328B22E5A00EB42DD /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		A79FA6940A0442DA4915A724 /* Pods_FlexLayout101.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlexLayout101.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -78,6 +80,7 @@
 				98F6485128ACD47400EB42DD /* Assets.xcassets */,
 				98F6485328ACD47400EB42DD /* LaunchScreen.storyboard */,
 				98F6485628ACD47400EB42DD /* Info.plist */,
+				98F6487328B22E5A00EB42DD /* TestView.swift */,
 			);
 			path = FlexLayout101;
 			sourceTree = "<group>";
@@ -88,7 +91,6 @@
 				2A6B3E0B10C4914591F88A49 /* Pods-FlexLayout101.debug.xcconfig */,
 				3E127F4B4484092F54F4349D /* Pods-FlexLayout101.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				98F6487428B22E5A00EB42DD /* TestView.swift in Sources */,
 				98F6484D28ACD47100EB42DD /* ViewController.swift in Sources */,
 				98F6484928ACD47100EB42DD /* AppDelegate.swift in Sources */,
 				98F6484B28ACD47100EB42DD /* SceneDelegate.swift in Sources */,
