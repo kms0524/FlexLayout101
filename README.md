@@ -18,6 +18,9 @@
 ### 8/27
 드디어 flexlayout의 핵심인 basis, grow, shrink모두 정리하였다. 유연하게 뷰의 크기를 조정해주다니... 편리한거는 둘째치고, 만약 디자이너가 flexlayout을 알고있다면 진짜 엄청난 시너지가 나올거같다...
 
+### 8/29
+모든 정리를 마쳤다! 이제 실습으로 한번 만들어봐야지...
+
 
 # What is FlexLayout?
 
@@ -126,7 +129,7 @@ FlexLayout의 가장 큰 특징으로, 컨테이너 안의 여백의 공간들�
 강제로 FlexLayout이 컨테이너(뷰)에 레이아웃을 강제로 적용되게 해줄때 사용되는 메소드이다.
 
 ### ❓레이아웃을 강제로 적용시킨다는게 무슨말인가요?
-제드님의 [포스트](https://zeddios.tistory.com/1253)에 markDirty 파트에 있는 이미지가 가장 좋은 예시이다. FlexLayout은 lfex 프로퍼티의 변경, 혹은 컨테이너의 크기가 변경될때만 레이아웃이 할당이된다. 그런데 만약, 아이템을 display(.none)을 하거나 다른 방식으로 어떻게든 아이템들의 내용물이 바뀌거나, 레이아웃이 변경되어야는데 새롭게 재할당시키면? 새롭게 재할당된 아이템은, flex 프로퍼티를 변경하지 않는이상 아이템의 레이아웃은 최초에 할당되었을때의 레이아웃을 가지게된다.
+제드님의 [포스트](https://zeddios.tistory.com/1253)에 markDirty 파트에 있는 이미지가 가장 좋은 예시이다. FlexLayout은 Flex 프로퍼티의 변경, 혹은 컨테이너의 크기가 변경될때만 레이아웃이 할당이된다. 그런데 만약, 아이템을 display(.none)을 하거나 다른 방식으로 어떻게든 아이템들의 내용물이 바뀌거나, 레이아웃이 변경되어야는데 새롭게 재할당시키면? 새롭게 재할당된 아이템은, flex 프로퍼티를 변경하지 않는이상 아이템의 레이아웃은 최초에 할당되었을때의 레이아웃을 가지게된다.
 
 이럴때, .markDirty() 메소드를 사용하여 flexbox 트리의 루트로 가서 트리 하위에 다시 새롭게 레이아웃을 계산하도록 하게한다. 이후, .layout()메소드를 사용하거나 setNeedsLayout() 을 사용하여 계산된 레이아웃을 적용시키면 된다.
 
@@ -142,14 +145,45 @@ let layoutSize = viewA.flex.sizeThatFits(size: CGSize(width: 200, height: CGFloa
 
 # 절대위치 관련 메소드
 
+## .position()
+뷰를 컨테이너 안의 위치에 대한 뷰의 위치를 설정하고 싶을때 선언시키는 메소드이다. 파라미터엔 relative, absolute 가 있으며, 기본값으로는 relative 가 설정되있다. 메소드를 사용하려면 파라미터를 absolute를 넣어준 다음 아래에 설명하는 메소드들을 활용하여 위치를 설정해야한다.
 
-# Paddings (.padding(), .paddingTop() .paddingBottom() .paddingLeft() .paddingRight() etc...)
-컨테이너 내부의 뷰들에게 패딩(offset)을 부여하는 메소드이다.
+## .top(), .bottom(), .left(), .right() ...
+이 메소드들은 컨테이너 안의 위치에 대한 뷰의 위치를 조정하는 메소드들이다. 컨테이너를 기준으로 위아래, 좌우, 시작과끝, 전부 를 변경시킬 수 있다. 
 
-컨테이너 자체의 패딩은 이 메소드로는 부여할 수 없다. 파라미터로는 CGFLoat을 사용한 절대값과, FPercent를 사용한 상대값 모두 적용 가능하다.
+모든 메소드들의 대한 내용과 설명은 [공식 GitHub README](https://github.com/layoutBox/FlexLayout#absolute_positioning)에 전부 나와있다.
 
-또한, UIView.safeAreaInsets, UIView.directionalLayoutMargins 들을 파라미터로도 활용 가능하고, vertical, horizontal 등등 여러 방향으로 적용가능하다.
+# 크기 관련 메소드
 
-모든 Padding 메소드들은 [공식문서](https://github.com/layoutBox/FlexLayout#paddings)에 나와있다.
+## .width(), .height(), .size()
+뷰의 너비와 높이와 너비,높이 모두를 설정할 수 있는 메소드이다. 파라미터로는 옵셔널 float 타입과 FPercent 타입이 들어간다. float 타입에 음수(negative)값은 들어갈 수 없으며, FPercent 타입을 넣으면 컨테이너의 길이의 퍼센트 만큼 설정되고, nil 을 넣으면 길이를 리셋하게된다.
+
+## .minWidth(), .maxWidth(), .minHeight(), .maxHeight()
+.grow(), .shrink() 메소드와 같이 쓰면 좋은 메소드들로, 뷰의 한계 길이를 지정시키는 메소드들이다. .grow(), .shirnk() 를 사용하면 뷰의 길이가 동적으로 바뀌게 되어서 원하는 디자인이 나오지 않게 되는 경우가 있는데, 이럴때 뷰의 한계 길이를 지정시켜놓으면 지정된 길이를 넘어서는 불상사를 방지할 수 있다. 파라미터로는 float 타입과 FPercent가 들어가며, 사용 방식은 .width(), .height(), .size() 메소드들과 동일하다.
+
+## .aspectRatio()
+뷰의 비율을 분수의 형태처럼 사용할 수 있게 하는 메소드로, (너비) / (높이) 형태로 사용한다. 흔히 말하는 16:9, 4:3 비율도 간단하게 파라미터로 16/9, 4/3 을 넣어주면 변하게된다. 단, 주의할 점이 있는데 .aspectRatio() 메소드는 .grow() 메소드보다 우선순위가 높기 때문에, 만약 혼용해서 쓰게 될 떄에 주의해야한다.
+
+# 마진 관련 메소드들
+
+## .marginTop(), .marginLeft(), .marginBottom(), marginRight()...
+이 메소드들은 같은 뎁스(depth)의 속한 뷰나 상위 뷰에 대한 마진값을 조정하는 메소드들이다. 파라미터엔 float타입과 FPercent 타입이 들어가며, 위아래, 좌우, 시작과 끝, 수직수평 등등 여러 방향의 마진값을 조절할 수 있다.
+
+모든 메소드들의 대한 내용과 설명은 [공식 GitHub README](https://github.com/layoutBox/FlexLayout#margins)에 나와있다.
+
+# 패딩 관련 메소드들 
+
+## .padding(), .paddingTop() .paddingBottom() .paddingLeft() .paddingRight()
+
+컨테이너 내부의 뷰들에게 패딩(offset)을 부여하는 메소드이다. 컨테이너 자체의 패딩은 이 메소드로는 부여할 수 없다. 파라미터로는 float을 타입과 FPercent 타입이 들어가며 또한, UIView.safeAreaInsets, UIView.directionalLayoutMargins 들을 파라미터로도 활용 가능하고, vertical, horizontal 등등 여러 방향으로 적용가능하다.
+
+모든 메소드들의 대한 내용과 설명은 [공식 GitHub README](https://github.com/layoutBox/FlexLayout#paddings)에 나와있다.
+
+# etc
+
+## .backgroundColor()
+뷰의 배경 색을 바꾸는 메소드이다. 파라미터로는 UIColor 가 들어가며, 사용법은 UIView.backgroundColor 와 다르게, 파라미터 안에 원하는 색을 선언하는 방식이다.
+
+
 
 
