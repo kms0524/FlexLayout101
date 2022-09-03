@@ -6,6 +6,48 @@
   <img height="300" src="https://github.com/layoutBox/FlexLayout/raw/master/docs_markdown/images/flexlayout-logo-text.png">
 </p>
 
+- [What is FlexLayout](#what-is-flexlayout)
+  * [Axis](#axis)
+  * [Start](#start)
+  * [.define()](#define)
+  * [.addItem()](#additem)
+  * [.pin()](#pin)
+  * [.layout()](#layout)
+- [컨테이너에 적용시키는 메소드들](#컨테이너에-적용시키는-메소드들)
+  * [.direction()](#direction)
+  * [.justifyContent()](#justifycontent)
+    + [❓spaceAround 와 spaceEvenly의 차이가 뭔가요?](#-spacearound-와-spaceevenly의-차이가-뭔가요?)
+  * [.alignItems()](#alignitems)
+  * [.alignSelf()](#alignself)
+  * [.wrap()](#wrap)
+  * [.alignContent()](#aligncontent)
+  * [.layoutDirection()](#layoutdirection)
+- [뷰들에 적용시키는 메소드들](#뷰들에-적용시키는-메소드듣)
+  * [.basis()](#basis)
+  * [.grow()](#grow)
+  * [.shrink()](#shrink)
+  * [.isIncludeInLayout()](#isincludeinlayout)
+  * [.display()](#display)
+  * [.markDirty()](#markdirty)
+    + [❓레이아웃을 강제로 적용시킨다는게 무슨말인가요?](#--------------------------)
+  * [.sizeThatFits()](#sizethatfits)
+  * [.intrinsicSize()](#intrinsicsize)
+- [절대위치 관련 메소드](#절대위치-관련-메소드)
+  * [.position()](#position)
+  * [.top(), .bottom(), .left(), .right() ...](#topbottomleftright)
+- [크기 관련 메소드](#크기-관련-메소드)
+  * [.width(), .height(), .size()](#width----height----size--)
+  * [.minWidth(), .maxWidth(), .minHeight(), .maxHeight()](#minwidth----maxwidth----minheight----maxheight--)
+  * [.aspectRatio()](#aspectratio--)
+- [마진 관련 메소드들](#마진-관련-메소드들)
+  * [.marginTop(), .marginLeft(), .marginBottom(), marginRight()...](#margintop----marginleft----marginbottom----marginright--)
+- [패딩 관련 메소드들](#패딩-관련-메소드들)
+  * [.padding(), .paddingTop() .paddingBottom() .paddingLeft() .paddingRight()](#padding----paddingtop---paddingbottom---paddingleft---paddingright--)
+- [etc](#etc)
+  * [.backgroundColor()](#backgroundcolor--)
+
+
+
 ### 08/23
 기본적인 StackView를 만들어서 구현해봤다. 공식문서에 있는 튜토리얼을 따라해보려 했으나, 하나하나 가지고 놀아보기에는 너무 복잡한 감이 있기에 기초적인 메소드들만 가지고 놀아보기에 적합한 playground를 만들어봤다! 확실히 UIStackView로 만드는것보단 훨씨 간편해보이는듯...
 
@@ -40,7 +82,7 @@ UIKit에 내장된 addSubView() 메소드르 이용하여 내용을 담는것이
 ## .addItem()
 컨테이너안에 뷰를 넣는 메소드로, 컨테이너 안에 여러겹으로 구성된 뷰를 구성할 수 있다.(UIStackView를 대체하려고 만들어진거니깐 당연히...)
 
-## .pin() (PinLayout)
+## .pin()
 FlexLayout 라이브러리가 아닌 같이 쓰면 좋은(사실상 필수지만...) PinLayout에 있는 메소드로서, layoutSubViews() 혹은, viewDidLayoutSubviews()에서 컨테이너의 레이아웃을 잡아주는 메소드이다. 
 
 ## .layout()
